@@ -145,6 +145,11 @@ main() {
   mv "Roblox.app" "$roblox_app_path"
   chmod -R 777 "$roblox_app_path"
 
+  cp "Hydrogen.app/Contents/Resources/libHydrogen.dylib" "/Applications/Roblox.app/Contents/MacOS/libHydrogen.dylib"
+  cp "/Applications/Roblox.app/Contents/MacOS/RobloxPlayer" "/Applications/Roblox.app/Contents/MacOS/.RobloxPlayer"
+
+  "Hydrogen.app/Contents/Resources/insert_dylib" --strip-codesig --all-yes "/Applications/Roblox.app/Contents/MacOS/libHydrogen.dylib" "/Applications/Roblox.app/Contents/MacOS/.RobloxPlayer" "/Applications/Roblox.app/Contents/MacOS/RobloxPlayer" >/dev/null 2>&1
+
   mv "Hydrogen.app" "$hydrogen_app_path"
   chmod -R 777 "$hydrogen_app_path"
 
@@ -155,4 +160,3 @@ main() {
 }
 
 main "$@"
-
