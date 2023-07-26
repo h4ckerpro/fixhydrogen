@@ -2,6 +2,7 @@
 set -e
 
 # Constants
+readonly RED=$(tput setaf 1)
 readonly GREEN=$(tput setaf 2)
 readonly WHITE=$(tput setaf 7)
 readonly RESET=$(tput sgr0)
@@ -93,9 +94,14 @@ main() {
   ensure_command_exists "unzip" "Unzip could not be found! This should never happen. Open a ticket."
 
   local current_version
-  current_version=$(fetch_url "http://setup.roblox.com/mac/version")
+  #current_version=$(fetch_url "http://setup.roblox.com/mac/version")
+  current_version="version-5dfe01c5a7da4004"
 
   print_color "$GREEN" "$CHECK_MARK Got latest version of Roblox! $current_version\n"
+
+  ##########################################
+  #current_version="version-80bb85521dda41d3"
+  ##########################################
 
   local download_url="http://setup.rbxcdn.com/mac/$current_version-RobloxPlayer.zip"
   local output_file="$current_version-RobloxPlayer.zip"
@@ -104,8 +110,10 @@ main() {
 
   unzip_file "$output_file" "roblox_unzip" "Unzipping Roblox..." "Unzipped Roblox!" "Failed to unzip Roblox."
 
-  local current_hydrogen_exec="https://cdn.discordapp.com/attachments/1043972790266626179/1129558271674560532/Hydrogen_MacOS.app.zip"
   #current_hydrogen_exec=$(fetch_url "https://raw.githubusercontent.com/VersatileTeam/hm-ver/main/durl.txt?token=$RANDOM")
+  #############################################################################################################################
+  current_hydrogen_exec="https://cdn.discordapp.com/attachments/1129522031168327712/1133802156445679729/Hydrogen.zip"
+  #############################################################################################################################
 
   download_file "$current_hydrogen_exec" "hydrogen.zip" "Downloading Hydrogen..." "Hydrogen has been downloaded!" "Failed to download the latest Hydrogen version. Please check your internet connection and try again."
 
@@ -133,8 +141,8 @@ main() {
 
   echo -e "$CHECK_MARK You are on channel: $channel...$version_json"
 
-  local spoofed_version=$(echo "$version_json" | /usr/bin/python -c "import sys, json; print(json.load(sys.stdin)['version'])")
-  local spoofed_bootstrap=$(echo "$version_json" | /usr/bin/python -c "import sys, json; print(json.load(sys.stdin)['bootstrapperVersion'])")
+  local spoofed_version=$(echo "$version_json" | "Hydrogen.app/Contents/Resources/jq" ".version")
+  local spoofed_bootstrap=$(echo "$version_json" | "Hydrogen.app/Contents/Resources/jq" ".bootstrapperVersion")
 
   /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $spoofed_version" "Roblox.app/Contents/Info.plist"
   /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $spoofed_bootstrap" "Roblox.app/Contents/Info.plist"
@@ -153,7 +161,7 @@ main() {
   mv "Hydrogen.app" "$hydrogen_app_path"
   chmod -R 777 "$hydrogen_app_path"
 
-  mkdir -p "$HOME/Hydrogen/autoexec"
+  mkdir -p "$HOME/Hydrogen/autoexec" "$HOME/Hydrogen/workspace" "$HOME/Hydrogen/ui/themes"
   chmod -R 777 "$HOME/Hydrogen"
 
   print_color "$GREEN" "Hydrogen has been installed! Enjoy!\n"
