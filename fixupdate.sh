@@ -164,6 +164,7 @@ main() {
   mkdir -p "$HOME/Hydrogen/autoexec" "$HOME/Hydrogen/workspace" "$HOME/Hydrogen/ui/themes"
   chmod -R 777 "$HOME/Hydrogen"
 
+  
   print_color "$GREEN" "Hydrogen has been installed! Enjoy!\n"
 }
 
