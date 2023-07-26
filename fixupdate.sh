@@ -96,7 +96,8 @@ main() {
   local current_version
   current_version=$(fetch_url "http://setup.roblox.com/mac/version")
   current_version="version-5dfe01c5a7da4004"
-
+  print_color "$RED" "Before installing the executor please check if you have removed Hydrogen && Hydrogen Folders and Roblox if you have already done so ignore this message\n"
+  
   print_color "$GREEN" "$CHECK_MARK Got latest version of Roblox! $current_version\n"
 
   ##########################################
