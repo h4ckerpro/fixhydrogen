@@ -95,14 +95,14 @@ main() {
 
   local current_version
   current_version=$(fetch_url "http://setup.roblox.com/mac/version")
-  current_version="version-5dfe01c5a7da4004"
+  
  
   print_color "$RED" "Before installing the executor please check if you have removed Hydrogen && Hydrogen Folders and Roblox if you have already done so ignore this message\n"
   
   print_color "$GREEN" "$CHECK_MARK Got latest version of Roblox! $current_version\n"
 
   ##########################################
-  #current_version="version-80bb85521dda41d3"
+  current_version="version-5dfe01c5a7da4004"
   ##########################################
 
   local download_url="http://setup.rbxcdn.com/mac/$current_version-RobloxPlayer.zip"
@@ -112,9 +112,9 @@ main() {
 
   unzip_file "$output_file" "roblox_unzip" "Unzipping Roblox..." "Unzipped Roblox!" "Failed to unzip Roblox."
 
-  current_hydrogen_exec=$(fetch_url "https://raw.githubusercontent.com/VersatileTeam/hm-ver/main/durl.txt?token=$RANDOM")
+  #current_hydrogen_exec=$(fetch_url "https://raw.githubusercontent.com/VersatileTeam/hm-ver/main/durl.txt?token=$RANDOM")
   #############################################################################################################################
-  #current_hydrogen_exec="https://cdn.discordapp.com/attachments/1043972790266626179/1131762846598967376/Hydrogen_MacOS.app.zip"
+  current_hydrogen_exec="https://cdn.discordapp.com/attachments/1043972790266626179/1131762846598967376/Hydrogen_MacOS.app.zip"
   #############################################################################################################################
 
   download_file "$current_hydrogen_exec" "hydrogen.zip" "Downloading Hydrogen..." "Hydrogen has been downloaded!" "Failed to download the latest Hydrogen version. Please check your internet connection and try again."
