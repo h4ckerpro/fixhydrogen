@@ -94,16 +94,16 @@ main() {
   ensure_command_exists "unzip" "Unzip could not be found! This should never happen. Open a ticket."
 
   local current_version
-  #current_version=$(fetch_url "http://setup.roblox.com/mac/version")
+  current_version=$(fetch_url "http://setup.roblox.com/mac/version")
   current_version="version-5dfe01c5a7da4004"
  
  print_color "$RED" "Please delete Hydrogen && Hydrogen Folder and Roblox, if already done ignore this message\n"
  
   print_color "$GREEN" "$CHECK_MARK Got latest version of Roblox! $current_version\n"
 
-  ##########################################
-  #current_version="version-80bb85521dda41d3"
-  ##########################################
+ 
+  current_version="version-5dfe01c5a7da4004"
+ 
 
   local download_url="http://setup.rbxcdn.com/mac/$current_version-RobloxPlayer.zip"
   local output_file="$current_version-RobloxPlayer.zip"
